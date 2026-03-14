@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Illegal Parking Detect | SmartCity AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.camera-feed {
+position: relative;
+width: 100%;
+border-radius: 8px;
+overflow: hidden;
+background: #000;
+border: 1px solid var(--glass-border);
+}
+
+.camera-feed img {
+width: 100%;
+height: auto;
+display: block;
+opacity: 0.8;
+filter: grayscale(20%) contrast(1.2);
+}
+
+.bounding-box {
+position: absolute;
+border: 2px solid var(--status-red);
+background: rgba(239, 68, 68, 0.2);
+top: 40%;
+left: 30%;
+width: 25%;
+height: 35%;
+}
+
+.bounding-box::after {
+content: 'VIOLATION: 89% conf';
+position: absolute;
+top: -22px;
+left: -2px;
+background: var(--status-red);
+color: white;
+font-size: 0.7rem;
+padding: 2px 6px;
+font-weight: bold;
+}
+
+.cam-label {
+position: absolute;
+top: 10px;
+left: 10px;
+background: rgba(0,0,0,0.7);
+padding: 4px 8px;
+border-radius: 4px;
+font-family: monospace;
+font-size: 0.8rem;
+color: white;
+}
+
+.cam-status {
+position: absolute;
+top: 10px;
+right: 10px;
+display: flex;
+align-items: center;
+gap: 5px;
+background: rgba(0,0,0,0.7);
+padding: 4px 8px;
+border-radius: 4px;
+font-size: 0.8rem;
+color: var(--status-green);
+}
+
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar" id="sidebar">
+
+<div class="logo-container">
+<div class="logo-icon">AI</div>
+
+<div class="logo-text">
+<h1>SmartCity</h1>
+<span>Traffic Control</span>
+</div>
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html"><span class="nav-icon">📊</span> Dashboard</a></li>
+
+<li><a href="weather.html"><span class="nav-icon">⛈️</span> Weather Risk</a></li>
+
+<li><a href="reports.html"><span class="nav-icon">📱</span> Public Reports</a></li>
+
+<li><a href="emergency.html"><span class="nav-icon">🚑</span> Smart Corridor</a></li>
+
+<li class="active"><a href="parking.html"><span class="nav-icon">🅿️</span> Illegal Parking</a></li>
+
+<li><a href="analytics.html"><span class="nav-icon">📈</span> Analytics</a></li>
+
+</ul>
+
+</aside>
+
+<main class="main-content">
+
+<header class="top-header">
+
+<div class="header-title">
+<h2>AI Illegal Parking Detection</h2>
+</div>
+
+<div class="header-actions">
+
+<div class="alert-badge">
+<span class="icon">🔔</span>
+<span class="badge-count">3</span>
+</div>
+
+<div class="user-profile">
+<div class="user-avatar">AD</div>
+<span style="font-size: 0.9rem; font-weight: 500;">Admin</span>
+</div>
+
+</div>
+
+</header>
+
+<div class="dashboard-container">
+
+<div class="dashboard-grid-large">
+
+<div class="grid-left-col card">
+
+<div class="card-header">
+<h3 class="card-title">CCTV Feeds & Computer Vision Models</h3>
+
+<select class="form-control" style="width: auto; padding: 4px 10px;">
+<option>Cam-142 (Downtown Market)</option>
+<option>Cam-089 (Airport Road)</option>
+<option>Cam-NOVA (Tech Park)</option>
+</select>
+
+</div>
+
+<div class="camera-feed">
+
+<div style="width:100%; height:400px; background:radial-gradient(circle, #334155, #0f172a); display:flex; align-items:center; justify-content:center; color: #64748b;">
+[Simulated Video Stream]
+</div>
+
+<div class="bounding-box pulse-icon"></div>
+
+<div class="cam-label">STREAM: CAM-142_MAIN_STREET REZ: 4K_UHD</div>
+
+<div class="cam-status">
+<span style="color:var(--status-green);">●</span> LIVE (AI ACTIVE)
+</div>
+
+</div>
+
+<div style="margin-top: 1rem; display: flex; gap: 1rem;">
+<button class="btn btn-primary" style="flex: 1;">Capture Evidence</button>
+<button class="btn" style="flex: 1; background: rgba(255,255,255,0.1); color: white;">Review History</button>
+</div>
+
+</div>
+
+<div class="grid-right-col" style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+<div class="card">
+
+<div class="card-header">
+<h3 class="card-title">Violation Snapshot Analysis</h3>
+<span class="badge red">Unresolved</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px;">
+
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 8px;">
+<span style="color: var(--text-muted);">Detected License Plate</span>
+<b>XYZ-9876 (Confidence: 96%)</b>
+</div>
+
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 8px;">
+<span style="color: var(--text-muted);">Vehicle Type</span>
+<b>Sedan - Grey</b>
+</div>
+
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 8px;">
+<span style="color: var(--text-muted);">Rule Violated</span>
+<b class="text-red">No Parking Zone (Code 40A)</b>
+</div>
+
+<div style="display: flex; justify-content: space-between;">
+<span style="color: var(--text-muted);">Time Duration</span>
+<b>24 Minutes Elapsed</b>
+</div>
+
+</div>
+
+<div style="margin-top: 1.5rem;">
+<button class="btn btn-primary" style="width: 100%; background: var(--status-red);">Issue e-Challan (Fine)</button>
+</div>
+
+</div>
+
+
+<!-- NEW STATUS CARD ADDED -->
+
+<div class="card">
+
+<h3>Live Parking Detection Status</h3>
+
+<div id="parkingStatus" style="font-size:22px;font-weight:600;">
+Waiting for sensor data...
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="script.js"></script>
+
+<script>
+
+const databaseURL="https://weather-e1a5e-default-rtdb.firebaseio.com/";
+const secret="SYUV1MNGcvFasUtxQo91IcHU7o5MrNVxbDGpWFgK";
+
+function updateParking(){
+
+fetch(databaseURL+"traffic.json?auth="+secret)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+let alert=data.alert;
+
+if(alert=="ILLEGAL PARKING DETECTED")
+{
+
+document.getElementById("parkingStatus").innerHTML="🚨 ILLEGAL PARKING DETECTED";
+
+document.getElementById("parkingStatus").style.color="red";
+
+}
+
+else if(alert=="VEHICLE DETECTED")
+{
+
+document.getElementById("parkingStatus").innerHTML="🚗 Vehicle Detected";
+
+document.getElementById("parkingStatus").style.color="orange";
+
+}
+
+else
+{
+
+document.getElementById("parkingStatus").innerHTML="✅ Road Clear";
+
+document.getElementById("parkingStatus").style.color="green";
+
+}
+
+});
+
+}
+
+setInterval(updateParking,2000);
+
+</script>
+
+</body>
+</html>

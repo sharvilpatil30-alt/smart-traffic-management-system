@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Incidents | SmartCity AI Traffic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">AI</div>
+            <div class="logo-text">
+                <h1>SmartCity</h1>
+                <span>Traffic Control</span>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html"><span class="nav-icon">📊</span> Dashboard</a></li>
+            <li><a href="weather.html"><span class="nav-icon">⛈️</span> Weather Risk</a></li>
+            <li class="active"><a href="reports.html"><span class="nav-icon">📱</span> Public Reports</a></li>
+            <li><a href="emergency.html"><span class="nav-icon">🚑</span> Smart Corridor</a></li>
+            <li><a href="parking.html"><span class="nav-icon">🅿️</span> Illegal Parking</a></li>
+            <li><a href="analytics.html"><span class="nav-icon">📈</span> Analytics</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-title">
+                <h2>Crowd-Sourced Incident Reports</h2>
+            </div>
+            <div class="header-actions">
+                <div class="alert-badge">
+                    <span class="icon">🔔</span>
+                    <span class="badge-count">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">AD</div>
+                    <span style="font-size: 0.9rem; font-weight: 500;">Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            
+            <div class="dashboard-grid-large">
+                <!-- Data Table -->
+                <div class="grid-left-col card">
+                    <div class="card-header">
+                        <h3 class="card-title">Live Reports Repository</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" class="form-control" placeholder="Search reports..." style="padding: 4px 10px; height: 32px;">
+                            <button class="btn btn-primary" style="padding: 4px 12px; height: 32px; line-height: 1;">Filter</button>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Category</th>
+                                    <th>Location</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#4882</td>
+                                    <td><span class="badge red">Accident</span></td>
+                                    <td>Sector 4, Main Blvd</td>
+                                    <td>10:42 AM</td>
+                                    <td><span class="badge yellow">Verifying</span></td>
+                                    <td><button class="btn" style="padding: 4px 8px; font-size: 0.75rem;">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>#4881</td>
+                                    <td><span class="badge yellow">Road Blockage</span></td>
+                                    <td>Park Avenue, Exit 5</td>
+                                    <td>10:15 AM</td>
+                                    <td><span class="badge red">Action Reqd.</span></td>
+                                    <td><button class="btn" style="padding: 4px 8px; font-size: 0.75rem;">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>#4880</td>
+                                    <td><span class="badge" style="background: rgba(255,255,255,0.1); color: white;">Broken Signal</span></td>
+                                    <td>5th & Broadway</td>
+                                    <td>09:30 AM</td>
+                                    <td><span class="badge green">Resolved</span></td>
+                                    <td><button class="btn" style="padding: 4px 8px; font-size: 0.75rem;">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>#4879</td>
+                                    <td><span class="badge red">Accident</span></td>
+                                    <td>Highway 1 Southbound</td>
+                                    <td>08:12 AM</td>
+                                    <td><span class="badge green">Resolved</span></td>
+                                    <td><button class="btn" style="padding: 4px 8px; font-size: 0.75rem;">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Submit new report form -->
+                <div class="grid-right-col card">
+                    <div class="card-header">
+                        <h3 class="card-title">Citizen Submission Portal Simulation</h3>
+                    </div>
+                    <form onsubmit="event.preventDefault(); alert('Report Submitted Successfully!');">
+                        <div class="form-group">
+                            <label>Report Type</label>
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Select category...</option>
+                                <option>Accident</option>
+                                <option>Road blockage</option>
+                                <option>Broken traffic signal</option>
+                                <option>Illegal parking</option>
+                                <option>Event congestion</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Location Input</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="text" class="form-control" placeholder="Enter street or pin on map" required>
+                                <button type="button" class="btn" style="background: rgba(255,255,255,0.1); color: white;" title="Get GPS">📍</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description (Optional)</label>
+                            <textarea class="form-control" placeholder="Provide additional details..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Image Evidence (Optional)</label>
+                            <div style="border: 2px dashed var(--glass-border); border-radius: 8px; padding: 20px; text-align: center; color: var(--text-muted);">
+                                📷 Click to upload or drag & drop media
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Report</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

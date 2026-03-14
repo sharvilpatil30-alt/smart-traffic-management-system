@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard | SmartCity AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">AI</div>
+            <div class="logo-text">
+                <h1>SmartCity</h1>
+                <span>Traffic Control</span>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html"><span class="nav-icon">📊</span> Dashboard</a></li>
+            <li><a href="weather.html"><span class="nav-icon">⛈️</span> Weather Risk</a></li>
+            <li><a href="reports.html"><span class="nav-icon">📱</span> Public Reports</a></li>
+            <li><a href="emergency.html"><span class="nav-icon">🚑</span> Smart Corridor</a></li>
+            <li><a href="parking.html"><span class="nav-icon">🅿️</span> Illegal Parking</a></li>
+            <li class="active"><a href="analytics.html"><span class="nav-icon">📈</span> Analytics</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-title">
+                <h2>Traffic Trends & AI Analytics</h2>
+            </div>
+            
+            <div class="header-actions">
+                <div class="alert-badge">
+                    <span class="icon">🔔</span>
+                    <span class="badge-count">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">AD</div>
+                    <span style="font-size: 0.9rem; font-weight: 500;">Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            
+            <!-- Key Performance Indicators -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Avg Speed (City Wide)</h3>
+                        <div class="value text-green">42 km/h</div>
+                        <p style="color: var(--status-green); font-size: 0.8rem; margin-top: 5px;">+5% vs last week</p>
+                    </div>
+                    <div class="stat-icon icon-green">⚡</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Incidents (Month)</h3>
+                        <div class="value">1,248</div>
+                        <p style="color: var(--status-red); font-size: 0.8rem; margin-top: 5px;">+12% vs last month</p>
+                    </div>
+                    <div class="stat-icon icon-yellow">📊</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Citizen Reports</h3>
+                        <div class="value">892</div>
+                        <p style="color: var(--status-green); font-size: 0.8rem; margin-top: 5px;">High engagement</p>
+                    </div>
+                    <div class="stat-icon icon-blue">📱</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>AI System Uptime</h3>
+                        <div class="value text-green">99.9%</div>
+                    </div>
+                    <div class="stat-icon" style="background: rgba(255,255,255,0.1)">⚙️</div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="dashboard-grid-large" style="grid-template-columns: 1fr 1fr;">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Accident Statistics (Monthly)</h3>
+                    </div>
+                    <div style="height: 300px;">
+                        <canvas id="accidentHistoryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Congestion by Zone</h3>
+                    </div>
+                    <div style="height: 300px;">
+                        <canvas id="congestionZoneChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card" style="grid-column: 1 / -1;">
+                    <div class="card-header">
+                        <h3 class="card-title">Citizen Reports Summary (Weekly)</h3>
+                    </div>
+                    <div style="height: 350px;">
+                        <canvas id="reportsBarChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

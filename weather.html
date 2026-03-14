@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Weather Detection | SmartCity AI Traffic Control</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+<div class="logo-container">
+<div class="logo-icon">AI</div>
+
+<div class="logo-text">
+<h1>SmartCity</h1>
+<span>Traffic Control</span>
+</div>
+</div>
+
+</aside>
+
+
+<main class="main-content">
+
+<header class="top-header">
+<h2>Weather & Environmental Detection</h2>
+</header>
+
+
+<div class="dashboard-container">
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<h3>Temperature</h3>
+<div class="value" id="temperature">-- °C</div>
+</div>
+
+<div class="stat-card">
+<h3>Humidity</h3>
+<div class="value" id="humidity">-- %</div>
+</div>
+
+<div class="stat-card">
+<h3>Rain Sensor</h3>
+<div class="value" id="rain">--</div>
+</div>
+
+<div class="stat-card">
+<h3>Weather Status</h3>
+<div class="value" id="weather">--</div>
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<script>
+
+const databaseURL="https://weather-e1a5e-default-rtdb.firebaseio.com/";
+const secret="SYUV1MNGcvFasUtxQo91IcHU7o5MrNVxbDGpWFgK";
+
+function updateWeather(){
+
+fetch(databaseURL+"weather.json?auth="+secret)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+document.getElementById("temperature").innerHTML=data.temperature+" °C";
+
+document.getElementById("humidity").innerHTML=data.humidity+" %";
+
+document.getElementById("rain").innerHTML=data.rainValue;
+
+document.getElementById("weather").innerHTML=data.status;
+
+});
+
+}
+
+setInterval(updateWeather,2000);
+
+</script>
+
+</body>
+</html>

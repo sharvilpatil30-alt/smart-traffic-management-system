@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Smart Corridor | SmartCity AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">AI</div>
+            <div class="logo-text">
+                <h1>SmartCity</h1>
+                <span>Traffic Control</span>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html"><span class="nav-icon">📊</span> Dashboard</a></li>
+            <li><a href="weather.html"><span class="nav-icon">⛈️</span> Weather Risk</a></li>
+            <li><a href="reports.html"><span class="nav-icon">📱</span> Public Reports</a></li>
+            <li class="active"><a href="emergency.html"><span class="nav-icon">🚑</span> Smart Corridor</a></li>
+            <li><a href="parking.html"><span class="nav-icon">🅿️</span> Illegal Parking</a></li>
+            <li><a href="analytics.html"><span class="nav-icon">📈</span> Analytics</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-title">
+                <h2>Emergency Vehicle Priority System</h2>
+            </div>
+            
+            <div class="header-actions">
+                <div class="alert-badge">
+                    <span class="icon">🔔</span>
+                    <span class="badge-count pulse-icon">1</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">AD</div>
+                    <span style="font-size: 0.9rem; font-weight: 500;">Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            
+            <div class="card" style="background: rgba(34, 197, 94, 0.1); border-left: 4px solid var(--status-green);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="color: var(--status-green); margin-bottom: 5px; display: flex; align-items: center; gap: 8px;">
+                            <span class="pulse-icon">🟢</span> Active Green Corridor: Ambulance AMB-742
+                        </h3>
+                        <p style="color: var(--text-main); font-size: 0.9rem;">Route optimized and 4 upcoming traffic signals synced to green.</p>
+                    </div>
+                    <div class="stat-info" style="text-align: right;">
+                        <span style="color: var(--text-muted); font-size: 0.8rem;">Est. Time of Arrival</span>
+                        <div class="value" style="font-size: 1.5rem; color: var(--text-main);">03:15 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid-large">
+                
+                <!-- Corridor mapping -->
+                <div class="grid-left-col card">
+                    <div class="card-header">
+                        <h3 class="card-title">Live Tracking & Traffic Control</h3>
+                        <span class="badge green">Signals Preempted</span>
+                    </div>
+                    <div class="map-container" id="corridorMap" style="height: 500px;"></div>
+                </div>
+
+                <!-- Alert Broadcaster & Vehicle Details -->
+                <div class="grid-right-col" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Current Operation</h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-muted);">Vehicle Type</span>
+                                <b>Type II Ambulance</b>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-muted);">Destination</span>
+                                <b>City Central Hospital</b>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-muted);">Current Speed</span>
+                                <b style="color: var(--accent-cyan);">75 km/h</b>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-muted);">Signals Controlled</span>
+                                <b>4/6 completed</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card flex: 1">
+                        <div class="card-header">
+                            <h3 class="card-title">V2X Nearby Vehicle Alert System</h3>
+                        </div>
+                        <div class="alert-list">
+                            <div class="alert-item warning">
+                                <div class="alert-icon">📡</div>
+                                <div class="alert-content">
+                                    <h4>Broadcasting Alert</h4>
+                                    <p>Notifying 145 connected vehicles within 1km radius to clear optimal lane.</p>
+                                </div>
+                            </div>
+                            <div class="alert-item">
+                                <div class="alert-icon">📱</div>
+                                <div class="alert-content">
+                                    <h4>Navigation Apps Synced</h4>
+                                    <p>Route data pushed to Google Maps/Waze API to reroute civilian traffic.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%; background: var(--status-red);">Manual Override / Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

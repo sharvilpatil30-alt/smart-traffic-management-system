@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | SmartCity AI Traffic Control</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">AI</div>
+            <div class="logo-text">
+                <h1>SmartCity</h1>
+                <span>Traffic Control</span>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li class="active"><a href="index.html"><span class="nav-icon">📊</span> Dashboard</a></li>
+            <li><a href="weather.html"><span class="nav-icon">⛈️</span> Weather Risk</a></li>
+            <li><a href="reports.html"><span class="nav-icon">📱</span> Public Reports</a></li>
+            <li><a href="emergency.html"><span class="nav-icon">🚑</span> Smart Corridor</a></li>
+            <li><a href="parking.html"><span class="nav-icon">🅿️</span> Illegal Parking</a></li>
+            <li><a href="analytics.html"><span class="nav-icon">📈</span> Analytics</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="top-header">
+            <div class="header-title">
+                <h2>Traffic Overview Dashboard</h2>
+            </div>
+
+            <div class="header-actions">
+                <div class="alert-badge">
+                    <span class="icon">🔔</span>
+                    <span class="badge-count">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">AD</div>
+                    <span style="font-size: 0.9rem; font-weight: 500;">Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-container">
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Active Incidents</h3>
+                        <div class="value text-red" id="stat-incidents">0</div>
+                    </div>
+                    <div class="stat-icon icon-red">⚠️</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Traffic Density (Av.)</h3>
+                        <div class="value text-yellow" id="stat-density">0%</div>
+                    </div>
+                    <div class="stat-icon icon-yellow">🚗</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Weather Risk</h3>
+                        <div class="value text-green" id="stat-weather">Low</div>
+                    </div>
+                    <div class="stat-icon icon-green">🌤️</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Emergency Vehicles</h3>
+                        <div class="value text-blue" id="stat-emergency">0</div>
+                    </div>
+                    <div class="stat-icon icon-blue">🚑</div>
+                </div>
+            </div>
+
+            <!-- Main Layout Grid -->
+            <div class="dashboard-grid-large">
+
+                <!-- Left Column (Map & Graph) -->
+                <div class="grid-left-col" style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+                    <!-- Live Traffic Map -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><span style="color:var(--status-green)">●</span> Live Smart Corridor
+                                & Congestion</h3>
+                            <span class="badge green">Live Sync</span>
+                        </div>
+                        <div class="map-container" id="mainMap"></div>
+                    </div>
+
+                    <!-- Traffic Density Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Hourly Traffic Density</h3>
+                            <select class="form-control" style="width: auto; padding: 4px 10px;">
+                                <option>Today</option>
+                                <option>Yesterday</option>
+                            </select>
+                        </div>
+                        <div style="height: 250px;">
+                            <canvas id="trafficDensityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Alerts & Reports) -->
+                <div class="grid-right-col" style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+                    <!-- Real-Time Alerts Panel -->
+                    <div class="card" style="flex: 1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Real-Time Alerts</h3>
+                            <a href="#"
+                                style="color: var(--accent-blue); text-decoration: none; font-size: 0.8rem;">View
+                                All</a>
+                        </div>
+
+                        <div class="alert-list" id="alerts-container">
+                            <div class="alert-item">
+                                <div class="alert-content">
+                                    <p>Loading alerts...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weather Status Widget -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Current Condition</h3>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 0;">
+                            <div>
+                                <h1 style="font-size: 3rem; font-weight: 300; margin-bottom: 5px;">24°C</h1>
+                                <p style="color: var(--text-muted);">Clear skies. visibility 10km.</p>
+                            </div>
+                            <div style="font-size: 4rem;">🌤️</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="window.location.href='weather.html'"
+                            style="width: 100%; margin-top: 1rem;">View Detection System</button>
+                    </div>
+
+                    <!-- Admin Controls -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Admin Controls</h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 1rem;">
+                            <button class="btn btn-primary" onclick="clearIncident()" style="background-color: var(--accent-orange); color: white;">Clear Incident</button>
+                            <button class="btn btn-primary" onclick="markResolved()" style="background-color: var(--status-green); color: white;">Mark Accident Resolved</button>
+                            <button class="btn btn-primary" onclick="triggerEmergencyMode()" style="background-color: var(--status-red); color: white;">Trigger Emergency Corridor</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
